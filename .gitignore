@@ -1,6 +1,9 @@
-.git
-bat_consolidate/
+ComfyUI/*.*
 ComfyUI/
+ComfyUI
+.git
+.gitignore
+bat_consolidate/
 *.log
 *._
 code_consolidate.bat
