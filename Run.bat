@@ -6,10 +6,11 @@ set "activate_script=%venv_path%activate.bat"
 set "deactivate_script=%venv_path%deactivate.bat"
 set "venv_python=%venv_path%python.exe"
 set "venv_pip=%venv_path%pip.exe"
-::call %activate_script%
-%venv_python% %comfy_path%main.py --verbose %*
+call %activate_script%
+%venv_python% %comfy_path%main.py%*
+::%venv_python% %comfy_path%main.py --verbose %*
 pause
-::call %deactivate_script%
+call %deactivate_script%
 :exit
 endlocal
 exit /b 0

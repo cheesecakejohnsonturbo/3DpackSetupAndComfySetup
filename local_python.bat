@@ -27,7 +27,7 @@ if not exist "%deactivate_script%" (
 call "%activate_script%"
 
 :loop_python_commands
-echo Allowed Commands:
+echo Suggested Commands:
 echo   - python -m pip install -r requirements.txt (Install requirements)
 echo   - python --version (Show Python version)
 echo   - python -m pip -h (Display pip help)
