@@ -8,6 +8,7 @@ set "activate_script=%venv_path%activate.bat"
 set "deactivate_script=%venv_path%deactivate.bat"
 set "venv_python=%venv_path%python.exe"
 set "venv_pip=%venv_path%pip.exe"
+::prompt Y/N
 set /p confirm="Proceed to Comfy-3D-Pack installation? (N=exit) (Y/N)"
 if /i "%confirm%"=="Y" (goto :menu_index) else (goto :cancelled)
 ::Main features catalogue
@@ -73,8 +74,13 @@ goto :menu_pytorch_3d
 :go_setup_pytorch_3d
 :: Action: Setup PyTorch3D and return to PyTorch3D Menu
 cd "%script_dir%ComfyUI\custom_nodes\ComfyUI-3D-Pack\nvdiffrast\pytorch3d"
-%venv_pip% install --upgrade setuptools wheel
-pip install -e .
+::prompt Y/N
+set /p confirm="Upgrade setuptools wheel? (N=skip to next step) (Y/N)"
+if /i "%confirm%"=="Y" (goto :upgrade_setuptools_y) else (goto :upgrade_setuptools_n)
+:upgrade_setuptools_y
+%venv_python% -m pip install --upgrade setuptools wheel
+:upgrade_setuptools_n
+%venv_python% -m pip install -e .
 goto :menu_pytorch_3d
 :exit
 call %deactivate_script%

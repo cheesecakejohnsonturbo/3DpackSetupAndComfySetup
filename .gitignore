@@ -1,5 +1,6 @@
 .git
-bat_consolidate
-ComfyUI
-3DPack_Install_Debug.log
+bat_consolidate/
+ComfyUI/
+*.log
 *._
+bat_consolidate.bat
