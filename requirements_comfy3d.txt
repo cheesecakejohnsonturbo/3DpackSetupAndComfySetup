@@ -1,0 +1,9 @@
+--extra-index-url https://download.pytorch.org/whl/cu124
+numpy==1.26.4
+torch==2.5.1
+torchvision
+torchaudio
+spconv-cu124
+diff-gaussian-rasterization
+diffoctreerast
+utils3d

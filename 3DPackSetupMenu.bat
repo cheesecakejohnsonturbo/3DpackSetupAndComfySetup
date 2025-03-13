@@ -1,9 +1,10 @@
 @echo off
 SETLOCAL
+call %activate_script%
 ::Predefined values
 set "script_dir=%~dp0"
 set "comfy_path=%script_dir%ComfyUI\"
-set "venv_path=%comfy_path%venv\Scripts\"
+set "venv_path=%script_dir%venv\Scripts\"
 set "activate_script=%venv_path%activate.bat"
 set "deactivate_script=%venv_path%deactivate.bat"
 set "venv_python=%venv_path%python.exe"
@@ -18,21 +19,25 @@ echo Main Menu
 echo 1. Clone comfy 3D Pack GIT
 echo 2. NVDIFFRAST Setup
 echo 3. PyTorch3D Setup
-echo 4. Quit
-choice /c 1234 /m "Choose an option: "
-if errorlevel 4 goto :exit
+echo 4. Local Python
+echo 5. Quit
+choice /c 12345 /m "Choose an option: "
+if errorlevel 5 goto :exit
+if errorlevel 4 call "%script_dir%local_python.bat"
 if errorlevel 3 goto :menu_pytorch_3d
 if errorlevel 2 goto :menu_nvdiffrast
 if errorlevel 1 goto :go_clone_comfy_3d_pack
 :menu_nvdiffrast
 ::cls
 echo NvDiffRast Menu
-echo 1. Clone
-echo 2. Setup
-echo 3. Return
-choice /c 123 /m "Choose an option: "
-if errorlevel 3 goto :menu_index
-if errorlevel 2 goto :go_setup_nvdiffrast
+echo 1. Clone (Legacy step 1)
+echo 2. Setup method A (Legacy step 2)
+echo 3. Setup method B (Better and single step)
+echo 4. Return
+choice /c 1234 /m "Choose an option: "
+if errorlevel 4 goto :menu_index
+if errorlevel 3 goto :go_setup_nvdiffrast_b
+if errorlevel 2 goto :go_setup_nvdiffrast_a
 if errorlevel 1 goto :go_clone_nvdiffrast
 :menu_pytorch_3d
 ::cls
@@ -50,7 +55,6 @@ cd "%script_dir%ComfyUI\custom_nodes"
 echo "Cloning and installing Comfy-3D-Pack"
 git clone https://github.com/MrForExample/ComfyUI-3D-Pack
 cd ComfyUI-3D-Pack
-call %activate_script%
 %venv_python% -m pip install -r requirements.txt
 %venv_python% -m pip install kiui torch_scatter
 goto :menu_index
@@ -60,10 +64,14 @@ cd "%script_dir%ComfyUI\custom_nodes\ComfyUI-3D-Pack"
 echo "cloning and installing NVDIFFRAST"
 git clone https://github.com/NVlabs/nvdiffrast
 goto :menu_nvdiffrast
-:go_setup_nvdiffrast
+:go_setup_nvdiffrast_a
 :: Action: Setup NVDiffRast and return to NVDiffRast Menu
 cd "%script_dir%ComfyUI\custom_nodes\ComfyUI-3D-Pack\nvdiffrast"
-pip install .
+%venv_python% -m pip install .
+goto :menu_nvdiffrast
+:go_setup_nvdiffrast_b
+::https://www.reddit.com/r/comfyui/comments/1bf7tv1/i_created_crm_custom_nodes_for_comfyui/ :: Arogato gozaimasu buddy
+%venv_python% -m pip install git+https://github.com/NVlabs/nvdiffrast/
 goto :menu_nvdiffrast
 :go_clone_pytorch_3d
 :: Action: Clone PyTorch3D and return to PyTorch3D Menu
@@ -89,8 +97,11 @@ pause
 exit /0
 :cancelled
 echo "Operation canceled."
+call %deactivate_script%
 endlocal
 pause
 exit /1
 
 ::Extra_Debug_Lexicon::
+
+

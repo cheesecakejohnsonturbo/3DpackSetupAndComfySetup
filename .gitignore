@@ -1,6 +1,8 @@
 ComfyUI/*.*
 ComfyUI/
 ComfyUI
+venv/
+venv/*.*
 .git
 .gitignore
 bat_consolidate/

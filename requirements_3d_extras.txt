@@ -1,0 +1,3 @@
+#https://www.reddit.com/r/comfyui/comments/1bf7tv1/i_created_crm_custom_nodes_for_comfyui/
+
+git+https://github.com/NVlabs/nvdiffrast/
