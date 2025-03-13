@@ -33,6 +33,7 @@ echo   - python -m pip install -r requirements.txt (Install requirements)
 echo   - python --version (Show Python version)
 echo   - python -m pip -h (Display pip help)
 echo   - python -m pip install --upgrade pip
+echo   - python -m pip list (List installed pip packages)
 echo   - exit (Return to the main menu)
 echo.
 set /p "python_command=>>> "

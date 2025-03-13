@@ -1,7 +1,7 @@
 @echo off
 setlocal
-set "comfy_path=%~dp0\ComfyUI\"
-set "venv_path=%comfy_path%venv\Scripts\"
+set "comfy_path=%~dp0ComfyUI\"
+set "venv_path=%~dp0venv\Scripts\"
 set "activate_script=%venv_path%activate.bat"
 set "deactivate_script=%venv_path%deactivate.bat"
 set "venv_python=%venv_path%python.exe"

@@ -1,5 +1,5 @@
 @echo off
-setlocal enabledelayedexpansion
+setlocal
 set "script_dir=%~dp0"
 set "comfy_path=%~dp0\ComfyUI\"
 set "venv_path=%script_dir%venv\Scripts\"
