@@ -1,6 +1,12 @@
+* **`Clone to folder of the git name`:**
 ```
 git clone https://github.com/cheesecakejohnsonturbo/3DpackSetupAndComfySetup .
 ```
+* **`Clone to execution directory`:**
+```
+git clone https://github.com/cheesecakejohnsonturbo/3DpackSetupAndComfySetup .
+```
+* **`Clone to customfolder`:**
 ```
 git clone https://github.com/cheesecakejohnsonturbo/3DpackSetupAndComfySetup customfolder
 ```
