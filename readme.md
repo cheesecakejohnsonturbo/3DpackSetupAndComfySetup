@@ -1,3 +1,16 @@
+* **`Clone to folder of the git name`:**
+```
+git clone https://github.com/cheesecakejohnsonturbo/3DpackSetupAndComfySetup
+```
+* **`Clone to execution directory`:**
+```
+git clone https://github.com/cheesecakejohnsonturbo/3DpackSetupAndComfySetup .
+```
+* **`Clone to customfolder`:**
+```
+git clone https://github.com/cheesecakejohnsonturbo/3DpackSetupAndComfySetup customfolder
+```
+
 # ComfyUI Setup Scripts - Script Glossary and Descriptions
 Caution, I still struggle finalizing the final pytorch3D step but everthing everything else works as intended except that I'm totally not done making torch_conf.bat
 ## Glossary of Scripts
