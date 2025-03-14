@@ -1,11 +1,9 @@
-ComfyUI*/*
-ComfyUI*/
-ComfyUI*
-venv*/
-venv*/*
 .git
-bat_consolidate/*
-bat_consolidate/
 *.log
 *._
 code_consolidate.bat
+preferences.ini
+paths.ini
+ComfyUI/
+bat_consolidate/
+venv/
