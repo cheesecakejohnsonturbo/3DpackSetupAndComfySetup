@@ -34,9 +34,9 @@ echo ==Main Setup Menu ===================================
 echo ==1. Setup ComfyUI - 0.2.7 "(for comfy3d)" ==========
 echo ==2. Setup ComfyUI - Latest version =================
 echo ==3. Proceed to Comfy setup and initialisation ======
-echo ==4. Pytorch Select ===========================
+echo ==4. Pytorch Select =================================
 echo ==5. Extra Setup Tools ==============================
-echo ==6. View Readme.md =========================
+echo ==6. View Readme.md =================================
 echo ==7. Proceed to exit ================================
 choice /c 1234567 /m "Choose an option: "
 if errorlevel 7 goto :exit
@@ -117,8 +117,12 @@ goto :select_torch_method
 ::cls (cls to clear view, disabled with ::)
 echo Select which setup method to proceed with
 echo 1. "install torch torchvision torchaudio --extra-index-url https://download.pytorch.org/whl/cu124"
-echo 2. "requirements_comfy3d.txt instead"
-choice /c 12 /m "Choose an option: "
+echo 2. "requirements_comfy3d.txt --extra-index-url https://download.pytorch.org/whl/cu124"
+echo 3. "uninstall torch (troubleshoot)"
+echo 4. Exit/Return
+choice /c 1234 /m "Choose an option: "
+if errorlevel 4 goto :main_setup_menu
+if errorlevel 3 goto :uninstall_torch
 if errorlevel 2 goto :torch_method_b
 if errorlevel 1 goto :torch_method_a
 goto :select_torch_method
@@ -129,6 +133,13 @@ goto :main_setup_menu
 :torch_method_b
 %venv_pip% install -r %~dp0requirements_comfy3d.txt --extra-index-url https://download.pytorch.org/whl/cu124
 goto :main_setup_menu
+::::::::::::::::::::::::::::::
+::Troubleshooting::
+::::::::::::::::::::::::::::::
+:uninstall_torch
+%venv_python% -m pip uninstall torch
+pause
+goto :select_torch_method
 :::::::::::::::::::::::::::::::::::::
 ::::Requirements.txt::::::
 :::::::::::::::::::::::::::::::::::::
