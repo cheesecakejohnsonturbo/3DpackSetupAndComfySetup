@@ -34,14 +34,29 @@ echo ==Main Setup Menu ===================================
 echo ==1. Setup ComfyUI - 0.2.7 "(for comfy3d)" ==========
 echo ==2. Setup ComfyUI - Latest version =================
 echo ==3. Proceed to Comfy setup and initialisation ======
-echo ==4. Extra Setup Tools ==============================
-echo ==5. Proceed to exit ================================
+echo ==4. Pytorch Select ===========================
+echo ==5. Extra Setup Tools ==============================
+echo ==6. View Readme.md =========================
+echo ==7. Proceed to exit ================================
 choice /c 12345 /m "Choose an option: "
-if errorlevel 5 goto :exit
-if errorlevel 4 goto :menu_setup_extras
+if errorlevel 7 goto :exit
+if errorlevel 6 goto :readme_md
+if errorlevel 5 goto :menu_setup_extras
+if errorlevel 4 goto :select_torch_method
 if errorlevel 3 goto :initialize_comfy
 if errorlevel 2 goto :setup_comfy_latest
 if errorlevel 1 goto :setup_comfy_027
+goto :main_setup_menu
+::::::::::::::::::::::::::::::::::::::::::::::
+::file viewer (readme.md)::::::
+::::::::::::::::::::::::::::::::::::::::::::::
+:readme_md
+cd %script_dir%
+type "readme.md"
+echo.
+echo "Press a key to return to the main menu"
+pause >nul
+cls
 goto :main_setup_menu
 ::::::::::::::::::::::::::::::::::::::
 ::custom_nodes_setup::
@@ -51,7 +66,7 @@ goto :main_setup_menu
 echo "Setup Extras Nodes?"
 echo 1. Basic packages
 echo 2. 3D packages
-echo 3.
+echo 3. Upgrade PIP
 echo 4. Skip (proceed to exit)
 choice /c 1234 /m "Choose an option: "
 if errorlevel 4 goto :exit
