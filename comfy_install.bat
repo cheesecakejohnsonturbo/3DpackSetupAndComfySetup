@@ -38,7 +38,7 @@ echo ==4. Pytorch Select ===========================
 echo ==5. Extra Setup Tools ==============================
 echo ==6. View Readme.md =========================
 echo ==7. Proceed to exit ================================
-choice /c 12345 /m "Choose an option: "
+choice /c 1234567 /m "Choose an option: "
 if errorlevel 7 goto :exit
 if errorlevel 6 goto :readme_md
 if errorlevel 5 goto :menu_setup_extras
