@@ -146,6 +146,7 @@ pause
 set /p confirm="Upgrade setuptools wheel? (N=skip to next step) (Y/N)"
 if /i "%confirm%"=="Y" (goto :upgrade_setuptools_y) else (goto :upgrade_setuptools_n)
 :upgrade_setuptools_y
+%venv_python% -m pip install -U setuptools==75.8.2
 %venv_python% -m pip install --upgrade setuptools wheel
 :upgrade_setuptools_n
 %venv_python% -m pip install -e .
